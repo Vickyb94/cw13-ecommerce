@@ -12,14 +12,29 @@ router.get('/', (req, res) => {
         attributes: ['id', 'product_name', 'price', 'stock'],
       }]
     })
-    .then((categories) => {
-      res.join(categories);
-    });
+    .then((categoryData) => {
+      res.join(categoryData);
+    })
+    .catch((err) => {
+      res.json(err);
+   });
 });
 
 router.get('/:id', (req, res) => {
-  // find one category by its `id` value
-  // be sure to include its associated Products
+  // find one category by its `id` value be sure to include its associated Products
+   Category.findByPk(req.params.id, {
+       attributes: ['id', 'category_name'],
+       include: [{
+        model: Products,
+        attrributes: ['id', 'product_name', 'stock', 'price']
+    }]
+   })
+   .then((categoryID) => {
+    res.join(categoryID);
+   })
+   .catch((err) => {
+      res.json(err);
+   });
 });
 
 router.post('/', (req, res) => {

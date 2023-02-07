@@ -35,12 +35,17 @@ router.get('/:id', (req, res) => {
   .catch((err) => {
      res.json(err);
   })
-  // find a single tag by its `id`
-  // be sure to include its associated Product data
 });
 
+//creating a new tag
 router.post('/', (req, res) => {
-  // create a new tag
+  Tag.create({
+    newTag: req.body.newTag
+  })
+  .then(Data => res.json(Data))
+  .catch((err) => {
+    res.json(err);
+  })
 });
 
 router.put('/:id', (req, res) => {

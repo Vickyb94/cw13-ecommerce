@@ -3,9 +3,21 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
 
+//finding all tags and associated product data
 router.get('/', (req, res) => {
-  // find all tags
-  // be sure to include its associated Product data
+  Tag.findAll({
+     attributes: ['id', 'tag_name'],
+     include: [{
+       model: Product,
+       attributes: ['id', 'product_name', 'price', 'stock'],
+}]
+  })
+  .then((tagData) => {
+    res.json(tagData);
+  })
+  .catch((err) => {
+    res.json(err);
+  })
 });
 
 router.get('/:id', (req, res) => {

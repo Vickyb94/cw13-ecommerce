@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     })
     .catch((err) => {
       res.json(err);
-   });
+   })
 });
 
 router.get('/:id', (req, res) => {

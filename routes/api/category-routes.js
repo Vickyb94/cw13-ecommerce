@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
    Category.findByPk(req.params.id, {
        attributes: ['id', 'category_name'],
        include: [{
-        model: Products,
+        model: Product,
         attrributes: ['id', 'product_name', 'stock', 'price']
     }]
    })

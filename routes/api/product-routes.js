@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
       {
          model:Category,
          attributes: ['category_name']
-      }
+      },
       {
         model: Tag,
         //through: ProductTag, as: 'Product_tag',
@@ -25,14 +25,27 @@ router.get('/', (req, res) => {
     .catch((err) => {
       res.json(err);
     })
-  // find all products
-  // be sure to include its associated Category and Tag data
 });
 
 // get one product
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  //creating a function to find one product by its id value
+   Product.findByPK(req.params.id, {
+    include: [ {
+      model:Category,
+      attributes: ['category_name']
+   },
+   {
+     model: Tag,
+     attributes: ['id', 'tag_name']
+   }],
+   })
+   .then ((oneProduct) => {
+    res.json(oneProduct);
+  })
+   .catch((err) => {
+     res.json(err);
+   })
 });
 
 // create new product

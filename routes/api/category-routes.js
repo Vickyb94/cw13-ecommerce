@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
       }]
     })
     .then((categoryData) => {
-      res.join(categoryData);
+      res.json(categoryData);
     })
     .catch((err) => {
       res.json(err);
@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
     }]
    })
    .then((categoryID) => {
-    res.join(categoryID);
+    res.json(categoryID);
    })
    .catch((err) => {
       res.json(err);

@@ -70,9 +70,23 @@ router.put('/:id', (req, res) => {
    });
 });
 
-
+//deleting tag by sing tag's id value
 router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
+  Tag.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(deletedTag => {
+     if(!deletedTag) {
+      res.status(404).json({message:'There is no tag with this id!'});
+      return;
+     }
+   res.json(deletedTag); 
+  })
+  .catch((err) => {
+    res.json(err);
+   })
 });
 
 module.exports = router;

@@ -122,8 +122,7 @@ router.put('/:id', (req, res) => {
 
 //wrote a function to delete a product by its id value
 router.delete('/:id', (req, res) => {
-  const deletedProduct = Product.findByPk(req.params.id);
-  Product.destroy({
+    Product.destroy({
     where: {
       id: req.params.id
     }

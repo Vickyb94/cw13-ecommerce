@@ -26,11 +26,9 @@ router.get('/', (req, res) => {
       res.json(err);
     })
 });
-
-// get one product
+ //creating a function to get one product by its id value
 router.get('/:id', (req, res) => {
-  //creating a function to find one product by its id value
-   Product.findByPK(req.params.id, {
+   Product.findByPk(req.params.id, {
     include: [ {
       model:Category,
       attributes: ['category_name']
@@ -122,8 +120,24 @@ router.put('/:id', (req, res) => {
     });
 });
 
+//wrote a function to delete a product by its id value
 router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+  const deletedProduct = Product.findByPk(req.params.id);
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(deletedProduct => {
+      if (!deletedProduct) {
+         res.status(404).json({message:'There is no product with this ID!'});
+         return;
+      }
+      res.json(deletedProduct);
+   })
+   .catch((err) => {
+     res.json(err);
+    })
 });
 
 module.exports = router;

@@ -15,7 +15,7 @@ After cloning repo, the user creates a .env file, then installs all necessary pa
 ![alt text](./images/Screenshot%202023-02-10%20082047.png)
 ![alt text](./images/Screenshot%202023-02-10%20082347.png)
 Github Repository: https://github.com/Vickyb94/cw13-ecommerce
-Demo Video: 
+Demo Video: https://drive.google.com/file/d/1juRet50coDFtjCP-vJVojNJkJ-5VU-9U/viewgit cd
 
 ## Credits
 https://www.npmjs.com/package/dotenv
